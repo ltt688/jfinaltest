@@ -1,7 +1,8 @@
 package Config;
 
 import Controller.HelloController;
-import Model.User;
+import Controller.LoginController;
+import Model.*;
 import com.jfinal.config.*;
 import com.jfinal.core.JFinal;
 import com.jfinal.kit.Prop;
@@ -30,6 +31,7 @@ public class DemoConfig extends JFinalConfig {
     public void configRoute(Routes me) {
 
         me.add("/hello", HelloController.class);
+        me.add("/login", LoginController.class);
     }
 
     public void configEngine(Engine me) {}
@@ -38,7 +40,14 @@ public class DemoConfig extends JFinalConfig {
         me.add(dp);
         ActiveRecordPlugin arp = new ActiveRecordPlugin(dp);
         me.add(arp);
-        arp.addMapping("user", User.class);
+        arp.addMapping("admin","num", Admin.class);
+        arp.addMapping("apply","id", Apply.class);
+        arp.addMapping("comment","commentID", Comment.class);
+        arp.addMapping("message","messageID", Message.class);
+        arp.addMapping("notice","noticeID",Notice.class);
+        arp.addMapping("task","taskID",Task.class);
+        arp.addMapping("tasktype",TaskType.class);
+        arp.addMapping("user","num",User.class);
     }
     public void configInterceptor(Interceptors me) {}
     public void configHandler(Handlers me) {}
